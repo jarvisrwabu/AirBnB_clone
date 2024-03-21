@@ -21,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, model):
         """
         Create a new instance of BaseModel, saves it (to the JSON file) and prints the id.
-        Usage: create <BaseModel>
+        Usage: $create <BaseModel>
         
         """
         input_cmd = shlex.split(model)
@@ -40,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, str_rep):
         """
         Print the string representation of an instance based on the class name and id.
-        Usage: show <class_name> <id>
+        Usage: $show <class_name> <id>
         
         """
         input_cmd = shlex.split(str_rep)
@@ -70,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, dest_arg):
         """
         Deletes an instance based on the class name and id (save the change into the JSON file).
-        Usage: destroy <class_name> <id>
+        Usage: $destroy <class_name> <id>
         
         """
         input_cmd = shlex.split(dest_arg)
@@ -95,7 +95,37 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
             
-                         
+         
+    def do_all(self, arg):
+        """
+        Prints all string representation of all instances based or not on the class name. 
+        Usage: $all <class_name> or $all 
+        
+        """
+        objects = storage.all()
+        input_cmd = shlex.split()
+        
+        if len(input_cmd) == 0:
+            for key, value in objects.items():
+                print(str(value)) # The output must be in string representation
+                            
+        elif input_cmd[0] not in self.valid_classes:
+            print("** class doesn't exist **")
+            
+        else:
+            for key, value in objects.items():
+                if key.split('.')[0] == input_cmd[0]:
+                    print(str(value))
+                    
+                    
+    def do_update(self, arg):
+        """
+        Update an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
+        usage:  $update <class name> <id> <attribute name> "<attribute value>"
+        
+        """
+        pass
+                            
     def do_EOF(self, line):
         """Implement EOF."""
         return True
