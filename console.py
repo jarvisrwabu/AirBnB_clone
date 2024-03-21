@@ -1,9 +1,18 @@
-"""Entry point of the command interpreter."""
+"""Entry point of the command interpreter.
+
+Assumptions: You can assume arguments are always in the right order
+             Each arguments are separated by a space
+             A string argument with a space must be between double quote
+             The error management starts from the first argument to the last one
+
+"""
 from models.base_model import BaseModel
 from models import storage
 import cmd
 import shlex
 import json
+
+
 class HBNBCommand(cmd.Cmd):
     """Command line interpreter for the AirBnB clone."""
     prompt = '(hbnb)' 
@@ -30,12 +39,12 @@ class HBNBCommand(cmd.Cmd):
         if len(input_cmd) == 0:
             print("** class name missing **")
             
-        elif len(input_cmd) == 1:
-            print("** instance id missing **")
-        
         elif input_cmd[0] not in self.valid_classes:
-            print("** class doesn't exist **")
-        
+            print("** class doesn't exist **")    
+            
+        elif len(input_cmd) < 2:
+            print("** instance id missing **")
+          
         else:
             class_name = input_cmd[0]
             instance_id = input_cmd[1]
@@ -47,6 +56,12 @@ class HBNBCommand(cmd.Cmd):
                     instance_data = data[instance_key]
                     print(f"[{class_name}] ({instance_id}) {instance_data}")
                      
+                     
+    def do_destroy(self, line):
+        """Deletes an instance based on the class name and id (save the change into the JSON file)."""
+        pass
+        
+                         
     def do_EOF(self, line):
         """Implement EOF."""
         return True
