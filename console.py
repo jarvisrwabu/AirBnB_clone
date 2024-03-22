@@ -16,7 +16,7 @@ import json
 class HBNBCommand(cmd.Cmd):
     """Command line interpreter for the AirBnB clone."""
     prompt = '(hbnb)' 
-    valid_classes = ["BaseModel", "User"]
+    valid_classes = ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]
 
     def do_create(self, model):
         """
