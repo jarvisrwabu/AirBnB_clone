@@ -7,6 +7,12 @@ Assumptions: You can assume arguments are always in the right order
 
 """
 from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 from models import storage
 import cmd
 import shlex
@@ -33,8 +39,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         
         else:
-            new_model = BaseModel()
-            new_model.save()
+            new_model = eval(f"{input_cmd[0]}()")
+            storage.save()
             print(new_model.id)
             
     def do_show(self, str_rep):
