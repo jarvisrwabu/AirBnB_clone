@@ -1,5 +1,5 @@
 """Class Place inherits from BaseModel Class."""
-from base_model import BaseModel
+from .base_model import BaseModel
 
 class Place(BaseModel):
     city_id = ""

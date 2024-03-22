@@ -103,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
         
         """
         objects = storage.all()
-        input_cmd = shlex.split()
+        input_cmd = shlex.split(arg)
         
         if len(input_cmd) == 0:
             for key, value in objects.items():
@@ -124,7 +124,46 @@ class HBNBCommand(cmd.Cmd):
         usage:  $update <class name> <id> <attribute name> "<attribute value>"
         
         """
-        pass
+        input_cmd = shlex.split(arg)
+        
+        if len(input_cmd) == 0:
+            print("** class name missing **")
+            
+        elif input_cmd[0] not in self.valid_classes:
+            print("** class doesn't exist **")
+            
+        elif len(input_cmd) < 2:
+            print("** instance id missing **")
+            
+        else:
+            objects = storage.all()
+            instance_key = "{}.{}".format(input_cmd[0], input_cmd[1]) # Class name and id
+            
+            if instance_key not in objects:
+                print("** no instance found **")
+                
+            elif len(input_cmd) < 3:
+                print("** attribute name missing **")
+                
+            elif len(input_cmd) < 4:
+                print("** value missing **")
+                
+            else:
+                my_obj = objects[instance_key]
+                
+                attribute_name = input_cmd[2]
+                attribute_value = input_cmd[3]
+                
+                try:
+                    attribute_value = eval(attribute_value)
+                    
+                except:
+                    pass
+                
+                setattr(my_obj, attribute_name, attribute_value)
+                
+                my_obj.save()
+                        
                             
     def do_EOF(self, line):
         """Implement EOF."""

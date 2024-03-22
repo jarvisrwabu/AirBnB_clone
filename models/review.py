@@ -1,5 +1,5 @@
 """Class Review inherits from BaseModel class."""
-from base_model import BaseModel
+from .base_model import BaseModel
 
 class Review(BaseModel):
     place_id = "" # string - empty string: it will be the Place.id
