@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 """Entry point of the command interpreter.
 
 Assumptions: You can assume arguments are always in the right order

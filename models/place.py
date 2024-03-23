@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 """Class Place inherits from BaseModel Class."""
 from .base_model import BaseModel
 
