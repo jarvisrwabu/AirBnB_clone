@@ -62,18 +62,17 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
           
         else:
+            objects = storage.all()
             class_name = input_cmd[0]
             instance_id = input_cmd[1]
-            with open('file.json', 'r') as file:
-                data = json.load(file)
-                instance_key = "{}.{}".format(class_name, instance_id)
+            
+            instance_key = "{}.{}".format(class_name, instance_id)
                 
-                if instance_key in data:
-                    instance_data = data[instance_key]
-                    print(f"[{class_name}] ({instance_id}) {instance_data}")
+            if instance_key in objects:
+                print(objects[instance_key])
                      
-                else:
-                    print("** no instance found **")
+            else:
+                print("** no instance found **")
                      
     def do_destroy(self, dest_arg):
         """
