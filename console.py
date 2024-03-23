@@ -172,6 +172,41 @@ class HBNBCommand(cmd.Cmd):
                 
                 my_obj.save()
                         
+                        
+    def default(self, arg):
+        """Default Behavior for cmd module."""
+        
+        input_cmd = arg.split('.')
+        # input_cmd[0] = User
+        # input_cmd[1] = all()  Example input User.all()
+        
+        input_classname = input_cmd[0]
+        
+        cmd = input_cmd[1].split('(')
+        # cmd[0] = 'all'
+        # cmd[1] = ')'
+        
+        input_method = cmd[0]
+        
+        command_dict = { 
+            'all' : self.do_all,
+            'show' : self.do_show,
+            'destroy' : self.do_destroy,
+            'update' : self.do_update
+            
+        }
+        
+        # 1. Implement <class name>.all()
+        if input_method in command_dict.keys():
+            return command_dict[input_method](input_classname)
+        
+        # 2. Implement <class name>.count()
+        elif input_method == 'count':
+            objects = storage.all()
+            class_count = sum(1 for key in objects.keys() if input_classname in key)
+            print(class_count)
+
+            
                             
     def do_EOF(self, line):
         """Implement EOF."""
