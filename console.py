@@ -188,7 +188,7 @@ class HBNBCommand(cmd.Cmd):
         
         input_method = cmd[0]
         
-        extra_arg = cmd[1].split(')')[0]
+        extra_arg = cmd[1].split(')')
         
         command_dict = { 
             'all' : self.do_all,
@@ -200,7 +200,7 @@ class HBNBCommand(cmd.Cmd):
         
         # 1. Implement <class name>.all()
         if input_method in command_dict.keys():
-            return command_dict[input_method]("{} {}".format(input_classname, extra_arg))
+            return command_dict[input_method]("{} {}".format(input_classname, extra_arg[0]))
         
         # 2. Implement <class name>.count()
         elif input_method == 'count':
