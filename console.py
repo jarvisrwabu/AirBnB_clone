@@ -203,7 +203,7 @@ class HBNBCommand(cmd.Cmd):
 
         }
 
-        # 1. Implement <class name>.all()
+        # 1. Implement <class name>.commend()
         if inmtd in cdct.keys():
             return cdct[inmtd]("{} {}".format(input_classname, extra_arg[0]))
 
