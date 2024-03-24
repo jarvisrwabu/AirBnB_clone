@@ -5,6 +5,8 @@ from .base_model import BaseModel
 
 
 class Place(BaseModel):
+    """Inherit from SuperClass BaseModel."""
+
     city_id = ""
     user_id = ""
     name = ""

@@ -5,6 +5,8 @@ from .base_model import BaseModel
 
 
 class Review(BaseModel):
+    """Inherit from SuperClass BaseModel."""
+
     place_id = ""
     user_id = ""
     text = ""
