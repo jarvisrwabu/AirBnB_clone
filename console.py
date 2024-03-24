@@ -25,7 +25,7 @@ import json
 class HBNBCommand(cmd.Cmd):
     """Command line interpreter for the AirBnB clone."""
 
-    prompt = '(hbnb)'
+    prompt = '(hbnb) '
     valid_classes = ["BaseModel", "User", "Place",
                      "State", "City", "Amenity", "Review"]
 
