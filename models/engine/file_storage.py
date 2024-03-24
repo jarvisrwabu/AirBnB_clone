@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Represent an abstracted storage engine."""
 from models.base_model import BaseModel
 from models.user import User
 from models.place import Place
@@ -11,10 +12,12 @@ import json
 
 
 class FileStorage:
-    """ Represent an abstracted storage engine.
+    """Represent an abstracted storage engine.
+
     Attributes:
         __file_path (str): The name of the file to save objects to.
         __objects (dict): A dictionary of instantiated objects.
+
     """
 
     __file_path = "file.json"
@@ -25,7 +28,7 @@ class FileStorage:
         return FileStorage.__objects
 
     def new(self, obj):
-        """Set in __objects obj with key <obj_class_name>.id"""
+        """Set in __objects obj with key <obj_class_name>.id."""
         oc_name = obj.__class__.__name__
         FileStorage.__objects["{}.{}".format(oc_name, obj.id)] = obj
 
